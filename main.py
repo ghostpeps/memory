@@ -38,4 +38,5 @@ if hard:
     available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 7)
     chosen_files = [file_map[num] for num in random_numbers]
-st.image(chosen_files)
+for file in chosen_files:
+    st.image(file)
