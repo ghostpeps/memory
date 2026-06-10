@@ -29,6 +29,7 @@ st.subheader("literally just a memory game")
 st.text("just memorize the cards and you'll be good")
 cards = 0
 c1, c2, c3 = st.columns(3)
+t1 = st.columns(1)
 easy = c1.button("Easy", on_click=select_difficulty, icon=":material/chess_pawn:", disabled=st.session_state.difficulty_chosen, width="stretch")
 medium = c2.button("Medium", on_click=select_difficulty, icon=":material/chess_knight:", disabled=st.session_state.difficulty_chosen, width="stretch")
 hard = c3.button("Hard", on_click=select_difficulty, icon=":material/chess_queen:", disabled=st.session_state.difficulty_chosen, width="stretch")
@@ -70,8 +71,9 @@ elif cards == 7:
     col6.image(chosen_files[5])
     col7.image(chosen_files[6])
 
-if st.session_state.difficulty_chosen == True:
-    countdown_placeholder = st.empty()
-    for s in range(10, -1, -1):
-        countdown_placeholder.write(f"You have {s} seconds left to memorize your cards.")
-        time.sleep(1)
+with t1:
+    if st.session_state.difficulty_chosen == True:
+        countdown_placeholder = st.empty()
+        for s in range(10, -1, -1):
+            countdown_placeholder.write(f"You have {s} seconds left to memorize your cards.")
+            time.sleep(1)
