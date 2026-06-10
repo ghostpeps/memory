@@ -69,3 +69,9 @@ elif cards == 7:
     col5.image(chosen_files[4])
     col6.image(chosen_files[5])
     col7.image(chosen_files[6])
+
+if st.session_state.difficulty_chosen == True:
+    countdown_placeholder = st.empty()
+    for s in range(10, -1, -1):
+        countdown_placeholder.write(f"You have {s} seconds left to memorize your cards.")
+        time.sleep(1)
