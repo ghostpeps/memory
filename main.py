@@ -80,3 +80,4 @@ if st.session_state.difficulty_chosen == True:
         time.sleep(1)
         if s == 0:
             break
+st.write("Complete")
