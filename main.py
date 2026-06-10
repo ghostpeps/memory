@@ -27,16 +27,27 @@ medium = c2.button("Medium", icon=":material/chess_knight:", width="stretch")
 hard = c3.button("Hard", icon=":material/chess_queen:", width="stretch")
 
 if easy:
+    cards = 3
     available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 3)
     chosen_files = [file_map[num] for num in random_numbers]
 if medium:
+    cards = 5
     available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 5)
     chosen_files = [file_map[num] for num in random_numbers]
 if hard:
+    cards = 7
     available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 7)
     chosen_files = [file_map[num] for num in random_numbers]
-for file in chosen_files:
-    st.image(file)
+for files in chosen_files:
+    # Split the row into two columns (e.g., 1 part image, 2 parts text)
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.image(file, use_container_width=True)
+        
+    with col2:
+        st.subheader("Image Title")
+        st.write("This description stays perfectly aligned with the image to its left.")
