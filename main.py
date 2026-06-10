@@ -46,7 +46,7 @@ for file in chosen_files:
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        st.image(file, use_container_width=True)
+        st.image(file, width=450)
         
     with col2:
         st.subheader("Image Title")
