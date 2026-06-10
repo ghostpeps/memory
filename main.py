@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 import random
+import streamlit.components.v1 as components
 
 main_page = st.Page("main.py", title="Home", icon="🏠")
 game_page = st.Page("pages/game.py", title="Game", icon="🎮")
