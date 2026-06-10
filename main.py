@@ -13,11 +13,9 @@ file_map = {
     9: "TREE.png",
 }
 
-# available_numbers = list(file_map.keys())
-
-# random_numbers = random.sample(available_numbers, 3)
-
-# chosen_files = [file_map[num] for num in random_numbers]
+available_numbers = list(file_map.keys())
+random_numbers = random.sample(available_numbers, 3)
+chosen_files = [file_map[num] for num in random_numbers]
 
 st.title("The Memory Game")
 st.subheader("literally just a memory game")
@@ -26,3 +24,16 @@ c1, c2, c3 = st.columns(3)
 easy = c1.button("Easy", icon=":material/chess_pawn:", width="stretch")
 medium = c2.button("Medium", icon=":material/chess_knight:", width="stretch")
 hard = c3.button("Hard", icon=":material/chess_queen:", width="stretch")
+
+if easy:
+    available_numbers = list(file_map.keys())
+    random_numbers = random.sample(available_numbers, 3)
+    chosen_files = [file_map[num] for num in random_numbers]
+if medium:
+    available_numbers = list(file_map.keys())
+    random_numbers = random.sample(available_numbers, 5)
+    chosen_files = [file_map[num] for num in random_numbers]
+if hard:
+    available_numbers = list(file_map.keys())
+    random_numbers = random.sample(available_numbers, 7)
+    chosen_files = [file_map[num] for num in random_numbers]
