@@ -108,3 +108,4 @@ if st.session_state.difficulty_chosen:
     </script>
     """
     components.html(redirect_html, height=0, width=0)
+    st.switch_page(game_page)
