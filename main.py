@@ -73,5 +73,5 @@ elif cards == 7:
 if st.session_state.difficulty_chosen == True:
     countdown_placeholder = st.empty()
     for s in range(10, -1, -1):
-        countdown_placeholder.header(f"You have {s} seconds left to memorize your cards.")
+        countdown_placeholder.subheader(f"You have {s} seconds left to memorize your cards.")
         time.sleep(1)
