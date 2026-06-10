@@ -41,7 +41,7 @@ if hard:
     available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 7)
     chosen_files = [file_map[num] for num in random_numbers]
-for files in chosen_files:
+for file in chosen_files:
     # Split the row into two columns (e.g., 1 part image, 2 parts text)
     col1, col2 = st.columns([1, 2])
     
