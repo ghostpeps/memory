@@ -73,14 +73,37 @@ elif cards == 7:
     col6.image(chosen_files[5])
     col7.image(chosen_files[6])
 
-if st.session_state.difficulty_chosen == True:
-    countdown_placeholder = st.empty()
-    for s in range(10, -1, -1):
-        if s == 1:
-            countdown_placeholder.subheader(f"You have {s} second left to memorize your cards.")
-        elif s != 1:
-            countdown_placeholder.subheader(f"You have {s} seconds left to memorize your cards.")
-        time.sleep(1)
-        if s == 0:
-            st.session_state.difficulty_chosen == False
-    st.switch_page(game_page)
+
+if st.session_state.difficulty_chosen:
+    # 1. This displays a visual live countdown in the UI using JavaScript
+    countdown_html = """
+    <div style="font-family: sans-serif; font-weight: bold; font-size: 1.25rem; color: #31333F; margin-top: 20px;">
+        You have <span id="timer">10</span> seconds left to memorize your cards.
+    </div>
+    <script>
+        let timeLeft = 10;
+        let timerElem = document.getElementById('timer');
+        let interval = setInterval(function() {
+            timeLeft--;
+            timerElem.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    </script>
+    """
+    components.html(countdown_html, height=60)
+    
+    # 2. This invisible snippet triggers the Streamlit page switch after exactly 10 seconds 
+    # without causing intermediate Python state resets!
+    redirect_html = """
+    <script>
+        setTimeout(function() {
+            window.parent.postMessage({
+                type: 'streamlit:set_page_url',
+                pageName: 'game'
+            }, '*');
+        }, 10000);
+    </script>
+    """
+    components.html(redirect_html, height=0, width=0)
