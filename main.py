@@ -63,5 +63,3 @@ elif cards == 7:
     col5.image(chosen_files[4])
     col6.image(chosen_files[5])
     col7.image(chosen_files[6])
-else:
-    pass
