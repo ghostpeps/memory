@@ -81,4 +81,6 @@ if st.session_state.difficulty_chosen == True:
         elif s != 1:
             countdown_placeholder.subheader(f"You have {s} seconds left to memorize your cards.")
         time.sleep(1)
+        if s == 0:
+            st.session_state.difficulty_chosen == False
     st.switch_page(game_page)
