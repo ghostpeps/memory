@@ -20,7 +20,7 @@ chosen_files = [file_map[num] for num in random_numbers]
 
 st.title("The Memory Game")
 st.subheader("literally just a memory game")
-st.text("just memorize cards and you'll be good")
+st.text("just memorize the cards and you'll be good")
 cards = 0
 c1, c2, c3 = st.columns(3)
 easy = c1.button("Easy", icon=":material/chess_pawn:", width="stretch")
@@ -63,3 +63,40 @@ elif cards == 7:
     col5.image(chosen_files[4])
     col6.image(chosen_files[5])
     col7.image(chosen_files[6])
+
+
+if "difficulty_chosen" not in st.session_state:
+    st.session_state.difficulty_chosen = False
+
+# 2. Define the callback function to disable the buttons
+def select_difficulty():
+    st.session_state.difficulty_chosen = True
+
+st.write("### Choose your difficulty level:")
+
+# 3. Pass the state and callback to all three buttons
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if st.button(
+        "Easy", 
+        disabled=st.session_state.difficulty_chosen, 
+        on_click=select_difficulty
+    ):
+        st.write("You selected **Easy** mode!")
+
+with col2:
+    if st.button(
+        "Medium", 
+        disabled=st.session_state.difficulty_chosen, 
+        on_click=select_difficulty
+    ):
+        st.write("You selected **Medium** mode!")
+
+with col3:
+    if st.button(
+        "Hard", 
+        disabled=st.session_state.difficulty_chosen, 
+        on_click=select_difficulty
+    ):
+        st.write("You selected **Hard** mode!")
