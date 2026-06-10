@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import random
 
 file_map = {
     1: "EARTH.png",
