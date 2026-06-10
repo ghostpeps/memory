@@ -14,6 +14,12 @@ file_map = {
     9: "TREE.png",
 }
 
+if "difficulty_chosen" not in st.session_state:
+    st.session_state.difficulty_chosen = False
+
+def select_difficulty():
+    st.session_state.difficulty_chosen = True
+
 available_numbers = list(file_map.keys())
 random_numbers = random.sample(available_numbers, 3)
 chosen_files = [file_map[num] for num in random_numbers]
@@ -23,9 +29,9 @@ st.subheader("literally just a memory game")
 st.text("just memorize the cards and you'll be good")
 cards = 0
 c1, c2, c3 = st.columns(3)
-easy = c1.button("Easy", icon=":material/chess_pawn:", width="stretch")
-medium = c2.button("Medium", icon=":material/chess_knight:", width="stretch")
-hard = c3.button("Hard", icon=":material/chess_queen:", width="stretch")
+easy = c1.button("Easy", on_click=select_difficulty, icon=":material/chess_pawn:", disabled=st.session_state.difficulty_chosen, width="stretch")
+medium = c2.button("Medium", on_click=select_difficulty, icon=":material/chess_knight:", disabled=st.session_state.difficulty_chosen, width="stretch")
+hard = c3.button("Hard", on_click=select_difficulty, icon=":material/chess_queen:", disabled=st.session_state.difficulty_chosen, width="stretch")
 
 if easy:
     cards = 3
@@ -63,40 +69,3 @@ elif cards == 7:
     col5.image(chosen_files[4])
     col6.image(chosen_files[5])
     col7.image(chosen_files[6])
-
-
-if "difficulty_chosen" not in st.session_state:
-    st.session_state.difficulty_chosen = False
-
-# 2. Define the callback function to disable the buttons
-def select_difficulty():
-    st.session_state.difficulty_chosen = True
-
-st.write("### Choose your difficulty level:")
-
-# 3. Pass the state and callback to all three buttons
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    if st.button(
-        "Easy", 
-        disabled=st.session_state.difficulty_chosen, 
-        on_click=select_difficulty
-    ):
-        st.write("You selected **Easy** mode!")
-
-with col2:
-    if st.button(
-        "Medium", 
-        disabled=st.session_state.difficulty_chosen, 
-        on_click=select_difficulty
-    ):
-        st.write("You selected **Medium** mode!")
-
-with col3:
-    if st.button(
-        "Hard", 
-        disabled=st.session_state.difficulty_chosen, 
-        on_click=select_difficulty
-    ):
-        st.write("You selected **Hard** mode!")
