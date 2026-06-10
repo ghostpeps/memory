@@ -41,13 +41,24 @@ if hard:
     available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 7)
     chosen_files = [file_map[num] for num in random_numbers]
-for file in chosen_files:
-    # Split the row into two columns (e.g., 1 part image, 2 parts text)
-    col1, col2 = st.columns([1, 2])
-    
-    with col1:
-        st.image(file, width=1)
-        
-    with col2:
-        st.subheader("Image Title")
-        st.write("This description stays perfectly aligned with the image to its left.")
+if cards == 3:
+    col1, col2, col3 = st.columns(cards)
+    col1.image(chosen_files[0])
+    col2.image(chosen_files[1])
+    col3.image(chosen_files[2])
+elif cards == 5:
+    col1, col2, col3, col4, col5 = st.columns(cards)
+    col1.image(chosen_files[0])
+    col2.image(chosen_files[1])
+    col3.image(chosen_files[2])
+    col4.image(chosen_files[3])
+    col5.image(chosen_files[4])
+elif cards == 7:
+    col1, col2, col3, col4, col5, col6, col7 = st.columns(cards)
+    col1.image(chosen_files[0])
+    col2.image(chosen_files[1])
+    col3.image(chosen_files[2])
+    col4.image(chosen_files[3])
+    col5.image(chosen_files[4])
+    col6.image(chosen_files[5])
+    col7.image(chosen_files[6])
