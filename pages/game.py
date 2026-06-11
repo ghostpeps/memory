@@ -40,8 +40,8 @@ c2.title("The Memory Game", text_alignment="justify")
 st.image(file_map[card_chosen], width=250)
 
 if col1.button("was not in the deck"):
-    if card_chosen in chosen_files:
+    if card_chosen not in chosen_files:
         remove_life()
 if col2.button("was in the deck"):
-    if card_chosen not in chosen_files:
+    if card_chosen in chosen_files:
         remove_life()
