@@ -35,7 +35,7 @@ c1.markdown(f"""
 
 c2.markdown("The Memory Game", text_alignment="justify")
 
-st.image(file_map[random.randint(1, 9)], width=60)
+st.image(file_map[random.randint(1, 9)], width=180)
 
 if st.button("Lose a life", on_click=remove_life):
     pass
