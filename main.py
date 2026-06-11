@@ -1,10 +1,10 @@
 import streamlit as st
 import time
 import random
-import streamlit.components.v1 as components
 
 main_page = st.Page("main.py", title="Home", icon="🏠")
 game_page = st.Page("pages/game.py", title="Game", icon="🎮")
+pg = st.navigation([main_page, game_page])
 
 file_map = {
     1: "EARTH.png",
@@ -84,3 +84,5 @@ if st.session_state.difficulty_chosen == True:
             countdown_placeholder.subheader(f"You have {s} seconds left to memorize your cards.")
         time.sleep(1)
     st.switch_page(game_page)
+
+pg.run()
