@@ -1,5 +1,6 @@
 import streamlit as st
 from main import file_map
+import random
 
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
@@ -34,7 +35,7 @@ c1.markdown(f"""
 
 c2.markdown("The Memory Game", text_alignment="justify")
 
-st.image("EARTH.png")
+st.image(file_map[random.randint(1, 9)])
 
 if st.button("Lose a life", on_click=remove_life):
     pass
