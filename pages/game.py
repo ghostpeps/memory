@@ -34,5 +34,7 @@ c1.markdown(f"""
 
 c2.markdown("The Memory Game", text_alignment="justify")
 
+st.image("EARTH.png")
+
 if st.button("Lose a life", on_click=remove_life):
     pass
