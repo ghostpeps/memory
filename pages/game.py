@@ -14,14 +14,18 @@ def remove_life():
     if st.session_state.lives > 0:
         st.session_state.lives -= 1
 
-heart_display = ""
+heart_icons = ""
 for i in range(3):
     if i < st.session_state.lives:
-        heart_display += ":red[:material/favorite:] "
+        icon = "favorite"
     else:
-        heart_display += ":red[:material/heart_broken:] "
+        icon = "heart_broken"
+    heart_icons += f'<span class="material-symbols-outlined" style="color: red; font-size: 60px;">{icon}</span> '
 
-st.markdown(heart_display)
+st.markdown(f"""
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" />
+<div>{heart_icons}</div>
+""", unsafe_allow_html=True)
 
 if st.button("Lose a life", on_click=remove_life):
     pass
