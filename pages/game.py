@@ -6,6 +6,7 @@ if "chosen_files" not in st.session_state:
 else:
     chosen_files = st.session_state["chosen_files"]
 
+c1, c2 = st.columns([1, 2])
 
 if "lives" not in st.session_state:
     st.session_state.lives = 3
@@ -26,10 +27,12 @@ for i in range(3):
         font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
     ">{icon}</span> '''
 
-st.markdown(f"""
+c1.markdown(f"""
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div>{heart_icons}</div>
 """, unsafe_allow_html=True)
+
+c2.header("The Memory Game")
 
 if st.button("Lose a life", on_click=remove_life):
     pass
