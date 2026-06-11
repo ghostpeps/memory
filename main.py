@@ -21,8 +21,6 @@ def select_difficulty():
     st.session_state.difficulty_chosen = True
 
 available_numbers = list(file_map.keys())
-random_numbers = random.sample(available_numbers, 3)
-chosen_files = [file_map[num] for num in random_numbers]
 
 st.title("The Memory Game")
 st.subheader("literally just a memory game")
@@ -36,17 +34,14 @@ hard = c3.button("Hard", on_click=select_difficulty, icon=":material/chess_queen
 
 if easy:
     cards = 3
-    available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 3)
     chosen_files = [file_map[num] for num in random_numbers]
 if medium:
     cards = 5
-    available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 5)
     chosen_files = [file_map[num] for num in random_numbers]
 if hard:
     cards = 7
-    available_numbers = list(file_map.keys())
     random_numbers = random.sample(available_numbers, 7)
     chosen_files = [file_map[num] for num in random_numbers]
 
