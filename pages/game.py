@@ -33,7 +33,7 @@ c1.markdown(f"""
 <div>{heart_icons}</div>
 """, unsafe_allow_html=True, text_alignment="justify")
 
-c2.markdown("The Memory Game", text_alignment="justify")
+c2.title("The Memory Game", text_alignment="justify")
 
 st.image(file_map[random.randint(1, 9)], width=180)
 
