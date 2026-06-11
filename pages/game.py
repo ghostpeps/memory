@@ -20,7 +20,11 @@ for i in range(3):
         icon = "favorite"
     else:
         icon = "heart_broken"
-    heart_icons += f'<span class="material-symbols-outlined" style="color: red; font-size: 60px;">{icon}</span> '
+    heart_icons += f'''<span class="material-symbols-outlined" style="
+        color: red;
+        font-size: 60px;
+        font-variation-settings: 'FILL' 1;
+    ">{icon}</span> '''
 
 st.markdown(f"""
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" />
