@@ -1,4 +1,5 @@
 import streamlit as st
+from main import file_map
 
 chosen_files = st.session_state["chosen_files"]
 
