@@ -8,6 +8,8 @@ else:
     chosen_files = st.session_state["chosen_files"]
 
 c1, c2 = st.columns([1, 2])
+col1, col2 = st.columns(2)
+card_chosen = random.randint(1, 9)
 
 if "lives" not in st.session_state:
     st.session_state.lives = 3
@@ -35,7 +37,11 @@ c1.markdown(f"""
 
 c2.title("The Memory Game", text_alignment="justify")
 
-st.image(file_map[random.randint(1, 9)], width=250)
+st.image(file_map[card_chosen], width=250)
 
-if st.button("Lose a life", on_click=remove_life):
-    pass
+if col1.button("was not in the deck"):
+    if card_chosen in chosen_files:
+        remove_life()
+if col2.button("was in the deck"):
+    if card_chosen not in chosen_files:
+        remove_life()
