@@ -1,3 +1,5 @@
 import streamlit as st
 
-st.write("It finally worked!!!")
+chosen_files = st.session_state["chosen_files"]
+
+# 50% of the way there!! omg!!!
