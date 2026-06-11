@@ -20,14 +20,14 @@ for i in range(3):
         icon = "favorite"
     else:
         icon = "heart_broken"
-    heart_icons += f'''<span class="material-symbols-outlined" style="
+    heart_icons += f'''<span class="material-symbols-rounded" style="
         color: red;
         font-size: 60px;
-        font-variation-settings: 'FILL' 1;
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
     ">{icon}</span> '''
 
 st.markdown(f"""
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div>{heart_icons}</div>
 """, unsafe_allow_html=True)
 
