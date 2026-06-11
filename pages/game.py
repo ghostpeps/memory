@@ -30,9 +30,9 @@ for i in range(3):
 c1.markdown(f"""
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div>{heart_icons}</div>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True, text_alignment="justify")
 
-c2.header("The Memory Game")
+c2.markdown("The Memory Game", text_alignment="justify")
 
 if st.button("Lose a life", on_click=remove_life):
     pass
