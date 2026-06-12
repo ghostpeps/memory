@@ -75,7 +75,7 @@ with c2:
 card_chosen = st.session_state.card_chosen
 card_file = file_map[card_chosen]
 
-col1, col2, col3 = st.columns([1, 2, 1])
+col1, col2, col3 = st.columns(3)
 
 col2.image(card_file, width=250)
 
@@ -93,5 +93,5 @@ def handle_in_deck():
     next_card()
     reset_timer()
 
-col1.button("was not in the deck", on_click=handle_not_in_deck)
-col3.button("was in the deck", on_click=handle_in_deck)
+col1.button("was not in the deck", on_click=handle_not_in_deck, shortcut="Left")
+col3.button("was in the deck", on_click=handle_in_deck, shortcut="Right")
