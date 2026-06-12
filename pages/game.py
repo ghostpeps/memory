@@ -21,7 +21,7 @@ if st.session_state.lives <= 0:
     st.switch_page("pages/end.py")
 
 if "card_chosen" not in st.session_state:
-    st.session_state.card_chosen = random.randint(1, 20)
+    st.session_state.card_chosen = random.randint(1, 21)
 
 if "deadline" not in st.session_state:
     st.session_state.deadline = time.time() + 5
@@ -31,7 +31,7 @@ def remove_life():
         st.session_state.lives -= 1
 
 def next_card():
-    st.session_state.card_chosen = random.randint(1, 20)
+    st.session_state.card_chosen = random.randint(1, 21)
 
 def reset_timer():
     st.session_state.deadline = time.time() + 5
