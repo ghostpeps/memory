@@ -8,7 +8,12 @@ chosen_files = st.session_state["chosen_files"]
 marked_not_in_deck = st.session_state.get("marked_not_in_deck", [])
 marked_in_deck = st.session_state.get("marked_in_deck", [])
 
-st.title("Game Over")
+c1, c2 = st.columns(2)
+c1.title("Game Over")
+if c2.button("Play Again"):
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.switch_page("main.py")
 
 def chunk(lst, size):
     return [lst[i:i + size] for i in range(0, len(lst), size)]
@@ -43,8 +48,3 @@ display_grouped(marked_in_deck, chosen_files, lambda f, deck: f in deck)
 
 st.subheader("Marked as 'was not in the deck'")
 display_grouped(marked_not_in_deck, chosen_files, lambda f, deck: f not in deck)
-
-if st.button("Play Again"):
-    for key in list(st.session_state.keys()):
-        del st.session_state[key]
-    st.switch_page("main.py")
