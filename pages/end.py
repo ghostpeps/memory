@@ -21,7 +21,7 @@ def chunk(lst, size):
 def display_grouped(file_list, deck, correct_fn):
     counts = Counter(file_list)
     unique_files = list(counts.keys())
-    for row in chunk(unique_files, 10):
+    for row in chunk(unique_files, 7):
         cols = st.columns(len(row))
         for col, f in zip(cols, row):
             count = counts[f]
@@ -35,7 +35,7 @@ def display_grouped(file_list, deck, correct_fn):
 st.subheader("Original Deck")
 deck_counts = Counter(chosen_files)
 unique_deck = list(deck_counts.keys())
-for row in chunk(unique_deck, 10):
+for row in chunk(unique_deck, 7):
     cols = st.columns(len(row))
     for col, f in zip(cols, row):
         count = deck_counts[f]
