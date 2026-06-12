@@ -19,14 +19,14 @@ cols = st.columns(len(marked_in_deck)) if marked_in_deck else []
 for col, f in zip(cols, marked_in_deck):
     correct = f in chosen_files
     col.image(f, width=120)
-    col.markdown(f":material/{'check' if correct else 'close'}:")
+    col.markdown(f":material/{'check: Correct' if correct else 'close: Incorrect'}")
 
 st.subheader("Marked as 'was not in the deck'")
 cols = st.columns(len(marked_not_in_deck)) if marked_not_in_deck else []
 for col, f in zip(cols, marked_not_in_deck):
     correct = f not in chosen_files
     col.image(f, width=120)
-    col.markdown(f":material/{'check' if correct else 'close'}:")
+    col.markdown(f":material/{'check: Correct' if correct else 'close: Incorrect'}")
 
 if st.button("Play Again"):
     for key in list(st.session_state.keys()):
