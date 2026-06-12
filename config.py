@@ -16,7 +16,8 @@ file_map = {
     15: "SWORD.png",
     16: "LION.png",
     17: "CRAYON.png",
-    18: "CARD.png",
+    18: "TOOTHBRUSH.png",
     19: "DOG.png",
     20: "BASKETBALL.png",
+    21: "CARD.png"
 }
