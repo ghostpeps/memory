@@ -1,5 +1,5 @@
 import streamlit as st
-from main import file_map
+from config import file_map
 import random
 import time
 
