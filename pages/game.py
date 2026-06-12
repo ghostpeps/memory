@@ -3,6 +3,9 @@ from config import file_map
 import random
 import time
 
+before_endgame_file_map = file_map.copy()
+before_endgame_file_map.pop(21)
+
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
 else:
@@ -41,7 +44,7 @@ def reset_timer():
 
 def check_found_all():
     seen = set(st.session_state.marked_in_deck) | set(st.session_state.marked_not_in_deck)
-    all_cards = set(file_map.values())
+    all_cards = set(before_endgame_file_map.values())
     if all_cards.issubset(seen):
         st.session_state.found_all_cards = True
 
