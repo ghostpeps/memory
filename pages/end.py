@@ -19,7 +19,7 @@ cols = st.columns(len(marked_in_deck)) if marked_in_deck else []
 for col, f in zip(cols, marked_in_deck):
     correct = f in chosen_files
     col.image(f, width=120)
-    col.markdown(f":material/{'check: Correct' if correct else 'close: Incorrect'}")
+    col.markdown(':green[:material/check:] Correct' if correct else ':red[:material/close:] Incorrect')
 
 st.subheader("Marked as 'was not in the deck'")
 cols = st.columns(len(marked_not_in_deck)) if marked_not_in_deck else []
