@@ -21,6 +21,3 @@ file_map = {
     20: "BASKETBALL.png",
     21: "CARD.png"
 }
-
-before_endgame_file_map = file_map.copy()
-before_endgame_file_map.pop(21)
