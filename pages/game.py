@@ -55,7 +55,10 @@ def countdown():
         reset_timer()
         st.rerun()
     else:
-        st.title(f"{int(remaining) + 1}")
+        if int(remaining) + 1 == 1:
+            st.title(f"{int(remaining) + 1} second remaining")
+        elif int(remaining) + 1 != 1:
+            st.title(f"{int(remaining) + 1} seconds remaining")
 
 with c2:
     countdown()
