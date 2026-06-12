@@ -1,2 +1,2 @@
 # The Memory Game
-**literally** just a memory game
+*literally* just a memory game
