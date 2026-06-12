@@ -1,29 +1,7 @@
 import streamlit as st
 import time
 import random
-
-file_map = {
-    1: "EARTH.png",
-    2: "ELEPHANT.png",
-    3: "FISH.png",
-    4: "HUMAN.png",
-    5: "ROBOT.png",
-    6: "SHARK.png",
-    7: "SUN.png",
-    8: "TRAIN.png",
-    9: "TREE.png",
-    10: "MONSTER.png",
-    11: "SNACK.png",
-    12: "SNAKE.png",
-    13: "PHONE.png",
-    14: "SHOE.png",
-    15: "SWORD.png",
-    16: "LION.png",
-    17: "CRAYON.png",
-    18: "CARD.png",
-    19: "DOG.png",
-    20: "BASKETBALL.png",
-}
+from config import file_map
 
 if "difficulty_chosen" not in st.session_state:
     st.session_state.difficulty_chosen = False
