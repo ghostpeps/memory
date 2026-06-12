@@ -44,7 +44,7 @@ def reset_timer():
 
 def check_found_all():
     seen = set(st.session_state.marked_in_deck) | set(st.session_state.marked_not_in_deck)
-    all_cards = set("TRAIN.png")
+    all_cards = set("ROBOT.png")
     if all_cards.issubset(seen):
         st.session_state.found_all_cards = True
 
