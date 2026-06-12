@@ -11,6 +11,15 @@ else:
 if "lives" not in st.session_state:
     st.session_state.lives = 3
 
+if "marked_not_in_deck" not in st.session_state:
+    st.session_state.marked_not_in_deck = []
+
+if "marked_in_deck" not in st.session_state:
+    st.session_state.marked_in_deck = []
+
+if "found_all_cards" not in st.session_state:
+    st.session_state.found_all_cards = False
+
 if st.session_state.lives <= 0:
     st.switch_page("pages/end.py")
 
@@ -19,12 +28,6 @@ if "card_chosen" not in st.session_state:
 
 if "deadline" not in st.session_state:
     st.session_state.deadline = time.time() + 5
-
-if "marked_not_in_deck" not in st.session_state:
-    st.session_state.marked_not_in_deck = []
-
-if "marked_in_deck" not in st.session_state:
-    st.session_state.marked_in_deck = []
 
 def remove_life():
     if st.session_state.lives > 0:
@@ -35,6 +38,12 @@ def next_card():
 
 def reset_timer():
     st.session_state.deadline = time.time() + 5
+
+def check_found_all():
+    seen = set(st.session_state.marked_in_deck) | set(st.session_state.marked_not_in_deck)
+    all_cards = set(file_map.values())
+    if all_cards.issubset(seen):
+        st.session_state.found_all_cards = True
 
 c1, c2 = st.columns([1, 2])
 
@@ -76,7 +85,6 @@ card_chosen = st.session_state.card_chosen
 card_file = file_map[card_chosen]
 
 col1, col2, col3 = st.columns(3)
-
 col2.image(card_file, width=250)
 
 def handle_not_in_deck():
@@ -85,6 +93,7 @@ def handle_not_in_deck():
         remove_life()
     next_card()
     reset_timer()
+    check_found_all()
 
 def handle_in_deck():
     st.session_state.marked_in_deck.append(card_file)
@@ -92,6 +101,7 @@ def handle_in_deck():
         remove_life()
     next_card()
     reset_timer()
+    check_found_all()
 
-col1.button("was not in the deck", on_click=handle_not_in_deck, shortcut="Left")
-col3.button("was in the deck", on_click=handle_in_deck, shortcut="Right")
+col1.button("was not in the deck", on_click=handle_not_in_deck)
+col3.button("was in the deck", on_click=handle_in_deck)
