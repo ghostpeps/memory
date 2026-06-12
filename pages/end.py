@@ -10,6 +10,10 @@ marked_in_deck = st.session_state.get("marked_in_deck", [])
 
 c1, c2 = st.columns(2)
 c1.title("Game Over")
+if st.session_state.get("found_all_cards"):
+    st.success("You saw every card in the deck!")
+else:
+    st.info("You didn't see every card.")
 if c2.button("Play Again", shortcut="Enter"):
     for key in list(st.session_state.keys()):
         del st.session_state[key]
