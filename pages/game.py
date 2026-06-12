@@ -1,6 +1,7 @@
 import streamlit as st
 from main import file_map
 import random
+import time
 
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
@@ -13,12 +14,18 @@ if "lives" not in st.session_state:
 if "card_chosen" not in st.session_state:
     st.session_state.card_chosen = random.randint(1, 9)
 
+if "deadline" not in st.session_state:
+    st.session_state.deadline = time.time() + 5
+
 def remove_life():
     if st.session_state.lives > 0:
         st.session_state.lives -= 1
 
 def next_card():
     st.session_state.card_chosen = random.randint(1, 9)
+
+def reset_timer():
+    st.session_state.deadline = time.time() + 5
 
 c1, c2 = st.columns([1, 2])
 
@@ -39,7 +46,19 @@ c1.markdown(f"""
 <div>{heart_icons}</div>
 """, unsafe_allow_html=True)
 
-c2.title("The Memory Game")
+@st.fragment(run_every=1)
+def countdown():
+    remaining = st.session_state.deadline - time.time()
+    if remaining <= 0:
+        remove_life()
+        next_card()
+        reset_timer()
+        st.rerun()
+    else:
+        st.title(f"{int(remaining) + 1}")
+
+with c2:
+    countdown()
 
 card_chosen = st.session_state.card_chosen
 card_file = file_map[card_chosen]
@@ -52,11 +71,13 @@ def handle_not_in_deck():
     if card_file in chosen_files:
         remove_life()
     next_card()
+    reset_timer()
 
 def handle_in_deck():
     if card_file not in chosen_files:
         remove_life()
     next_card()
+    reset_timer()
 
 col1.button("was not in the deck", on_click=handle_not_in_deck)
 col2.button("was in the deck", on_click=handle_in_deck)
