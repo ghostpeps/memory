@@ -4,11 +4,7 @@ import random
 import time
 
 before_endgame_file_map = file_map.copy()
-keys_to_remove = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
-
-# Loop and pop each key
-for key in keys_to_remove:
-    before_endgame_file_map.pop(key, None)
+before_endgame_file_map.pop(21)
 
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
@@ -48,7 +44,7 @@ def reset_timer():
 
 def check_found_all():
     seen = set(st.session_state.marked_in_deck) | set(st.session_state.marked_not_in_deck)
-    all_cards = set(before_endgame_file_map.values())
+    all_cards = set("TRAIN.png")
     if all_cards.issubset(seen):
         st.session_state.found_all_cards = True
 
@@ -110,5 +106,5 @@ def handle_in_deck():
     reset_timer()
     check_found_all()
 
-col1.button("was not in the deck", on_click=handle_not_in_deck)
-col3.button("was in the deck", on_click=handle_in_deck)
+col1.button("was not in the deck", on_click=handle_not_in_deck, shortcut="Left")
+col3.button("was in the deck", on_click=handle_in_deck, shortcut="Right")
