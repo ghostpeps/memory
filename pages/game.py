@@ -20,6 +20,12 @@ if "card_chosen" not in st.session_state:
 if "deadline" not in st.session_state:
     st.session_state.deadline = time.time() + 5
 
+if "marked_not_in_deck" not in st.session_state:
+    st.session_state.marked_not_in_deck = []
+
+if "marked_in_deck" not in st.session_state:
+    st.session_state.marked_in_deck = []
+
 def remove_life():
     if st.session_state.lives > 0:
         st.session_state.lives -= 1
@@ -58,7 +64,10 @@ def countdown():
         reset_timer()
         st.rerun()
     else:
-        st.title(f"{int(remaining) + 1}")
+        if int(remaining) + 1 == 1:
+            st.title(f"{int(remaining) + 1} second remaining")
+        else:
+            st.title(f"{int(remaining) + 1} seconds remaining")
 
 with c2:
     countdown()
@@ -71,12 +80,14 @@ st.image(card_file, width=250)
 col1, col2 = st.columns(2)
 
 def handle_not_in_deck():
+    st.session_state.marked_not_in_deck.append(card_file)
     if card_file in chosen_files:
         remove_life()
     next_card()
     reset_timer()
 
 def handle_in_deck():
+    st.session_state.marked_in_deck.append(card_file)
     if card_file not in chosen_files:
         remove_life()
     next_card()
