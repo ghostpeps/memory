@@ -84,7 +84,6 @@ def handle_not_in_deck():
         remove_life()
     next_card()
     reset_timer()
-    check_found_all()
 
 def handle_in_deck():
     st.session_state.marked_in_deck.append(card_file)
@@ -92,7 +91,6 @@ def handle_in_deck():
         remove_life()
     next_card()
     reset_timer()
-    check_found_all()
 
 col1.button("was not in the deck", on_click=handle_not_in_deck, shortcut="Left")
 col3.button("was in the deck", on_click=handle_in_deck, shortcut="Right")
