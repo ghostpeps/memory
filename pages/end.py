@@ -8,8 +8,8 @@ chosen_files = st.session_state["chosen_files"]
 marked_not_in_deck = st.session_state.get("marked_not_in_deck", [])
 marked_in_deck = st.session_state.get("marked_in_deck", [])
 
+st.title("Game Over")
 c1, c2 = st.columns(2)
-c1.title("Game Over")
 
 if c2.button("Play Again", shortcut="Enter"):
     for key in list(st.session_state.keys()):
@@ -33,7 +33,7 @@ def display_grouped(file_list, deck, correct_fn):
             col.image(f, width=120)
             col.markdown(f":{color}[:material/{icon}:] {label} x{count}")
 
-st.subheader("Original Deck")
+c1.subheader("Original Deck")
 deck_counts = Counter(chosen_files)
 unique_deck = list(deck_counts.keys())
 for row in chunk(unique_deck, 7):
