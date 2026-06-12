@@ -4,7 +4,11 @@ import random
 import time
 
 before_endgame_file_map = file_map.copy()
-before_endgame_file_map.pop(21)
+keys_to_remove = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+
+# Loop and pop each key
+for key in keys_to_remove:
+    before_endgame_file_map.pop(key, None)
 
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
