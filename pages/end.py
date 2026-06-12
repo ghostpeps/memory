@@ -10,7 +10,7 @@ marked_in_deck = st.session_state.get("marked_in_deck", [])
 
 c1, c2 = st.columns(2)
 c1.title("Game Over")
-if c2.button("Play Again"):
+if c2.button("Play Again", shortcut="Enter"):
     for key in list(st.session_state.keys()):
         del st.session_state[key]
     st.switch_page("main.py")
