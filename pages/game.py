@@ -11,6 +11,9 @@ else:
 if "lives" not in st.session_state:
     st.session_state.lives = 3
 
+if st.session_state.lives <= 0:
+    st.switch_page("pages/end.py")
+
 if "card_chosen" not in st.session_state:
     st.session_state.card_chosen = random.randint(1, 9)
 
@@ -55,10 +58,7 @@ def countdown():
         reset_timer()
         st.rerun()
     else:
-        if int(remaining) + 1 == 1:
-            st.title(f"{int(remaining) + 1} second remaining")
-        elif int(remaining) + 1 != 1:
-            st.title(f"{int(remaining) + 1} seconds remaining")
+        st.title(f"{int(remaining) + 1}")
 
 with c2:
     countdown()
@@ -82,5 +82,5 @@ def handle_in_deck():
     next_card()
     reset_timer()
 
-col1.button("was not in the deck", on_click=handle_not_in_deck, shortcut="Left")
-col2.button("was in the deck", on_click=handle_in_deck, shortcut="Right")
+col1.button("was not in the deck", on_click=handle_not_in_deck)
+col2.button("was in the deck", on_click=handle_in_deck)
