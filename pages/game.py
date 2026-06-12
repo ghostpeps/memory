@@ -31,7 +31,7 @@ def remove_life():
         st.session_state.lives -= 1
 
 def next_card():
-    st.session_state.card_chosen = random.randint(1, 9)
+    st.session_state.card_chosen = random.randint(1, 20)
 
 def reset_timer():
     st.session_state.deadline = time.time() + 5
