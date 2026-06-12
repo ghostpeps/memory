@@ -7,14 +7,20 @@ if "chosen_files" not in st.session_state:
 else:
     chosen_files = st.session_state["chosen_files"]
 
-c1, c2 = st.columns([1, 2])
-
 if "lives" not in st.session_state:
     st.session_state.lives = 3
+
+if "card_chosen" not in st.session_state:
+    st.session_state.card_chosen = random.randint(1, 9)
 
 def remove_life():
     if st.session_state.lives > 0:
         st.session_state.lives -= 1
+
+def next_card():
+    st.session_state.card_chosen = random.randint(1, 9)
+
+c1, c2 = st.columns([1, 2])
 
 heart_icons = ""
 for i in range(3):
@@ -31,15 +37,26 @@ for i in range(3):
 c1.markdown(f"""
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div>{heart_icons}</div>
-""", unsafe_allow_html=True, text_alignment="justify")
+""", unsafe_allow_html=True)
 
-c2.title("The Memory Game", text_alignment="justify")
+c2.title("The Memory Game")
 
-card_chosen = random.randint(1, 9)
-st.image(file_map[card_chosen], width=250)
+card_chosen = st.session_state.card_chosen
+card_file = file_map[card_chosen]
+
+st.image(card_file, width=250)
 
 col1, col2 = st.columns(2)
-if col1.button("was not in the deck", shortcut="Left") and card_chosen in chosen_files:
-    remove_life()
-if col2.button("was in the deck", shortcut="Right") and card_chosen not in chosen_files:
-    remove_life()
+
+def handle_not_in_deck():
+    if card_file in chosen_files:
+        remove_life()
+    next_card()
+
+def handle_in_deck():
+    if card_file not in chosen_files:
+        remove_life()
+    next_card()
+
+col1.button("was not in the deck", on_click=handle_not_in_deck)
+col2.button("was in the deck", on_click=handle_in_deck)
