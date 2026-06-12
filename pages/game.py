@@ -3,9 +3,6 @@ from config import file_map
 import random
 import time
 
-before_endgame_file_map = file_map.copy()
-before_endgame_file_map.pop(21)
-
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
 else:
@@ -19,9 +16,6 @@ if "marked_not_in_deck" not in st.session_state:
 
 if "marked_in_deck" not in st.session_state:
     st.session_state.marked_in_deck = []
-
-if "found_all_cards" not in st.session_state:
-    st.session_state.found_all_cards = False
 
 if st.session_state.lives <= 0:
     st.switch_page("pages/end.py")
@@ -41,12 +35,6 @@ def next_card():
 
 def reset_timer():
     st.session_state.deadline = time.time() + 5
-
-def check_found_all():
-    seen = set(st.session_state.marked_in_deck) | set(st.session_state.marked_not_in_deck)
-    all_cards = set("ROBOT.png")
-    if all_cards.issubset(seen):
-        st.session_state.found_all_cards = True
 
 c1, c2 = st.columns([1, 2])
 
