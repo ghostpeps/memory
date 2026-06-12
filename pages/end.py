@@ -26,7 +26,7 @@ cols = st.columns(len(marked_not_in_deck)) if marked_not_in_deck else []
 for col, f in zip(cols, marked_not_in_deck):
     correct = f not in chosen_files
     col.image(f, width=120)
-    col.markdown(f":material/{'check: Correct' if correct else 'close: Incorrect'}")
+    col.markdown(':green[:material/check:] Correct' if correct else ':red[:material/close:] Incorrect')
 
 if st.button("Play Again"):
     for key in list(st.session_state.keys()):
