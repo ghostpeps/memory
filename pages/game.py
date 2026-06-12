@@ -39,7 +39,7 @@ c2.title("The Memory Game", text_alignment="justify")
 card_chosen = random.randint(1, 9)
 st.image(file_map[card_chosen], width=250)
 
-if col1.button("was not in the deck") and card_chosen in chosen_files:
+if col1.button("was not in the deck", shortcut="Left") and card_chosen in chosen_files:
     remove_life()
-if col2.button("was in the deck") and card_chosen not in chosen_files:
+if col2.button("was in the deck", shortcut="Right") and card_chosen not in chosen_files:
     remove_life()
