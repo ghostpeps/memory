@@ -1,4 +1,3 @@
-# pages/end.py
 import streamlit as st
 from collections import Counter
 
@@ -24,8 +23,9 @@ def display_grouped(file_list, deck, correct_fn):
             correct = correct_fn(f, deck)
             icon = "check" if correct else "close"
             label = "Correct" if correct else "Wrong"
+            color = "green" if correct else "red"
             col.image(f, width=120)
-            col.markdown(f":material/{icon}: {label} x{count}")
+            col.markdown(f":{color}[:material/{icon}:] {label} x{count}")
 
 st.subheader("Original Deck")
 deck_counts = Counter(chosen_files)
