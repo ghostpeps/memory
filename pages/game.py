@@ -82,5 +82,5 @@ def handle_in_deck():
     next_card()
     reset_timer()
 
-col1.button("was not in the deck", on_click=handle_not_in_deck)
-col2.button("was in the deck", on_click=handle_in_deck)
+col1.button("was not in the deck", on_click=handle_not_in_deck, shortcut="Left")
+col2.button("was in the deck", on_click=handle_in_deck, shortcut="Right")
