@@ -1,4 +1,6 @@
+# pages/end.py
 import streamlit as st
+from collections import Counter
 
 if "chosen_files" not in st.session_state:
     st.switch_page("main.py")
@@ -9,24 +11,33 @@ marked_in_deck = st.session_state.get("marked_in_deck", [])
 
 st.title("Game Over")
 
+def display_grouped(file_list, deck, correct_fn):
+    counts = Counter(file_list)
+    unique_files = list(counts.keys())
+    cols = st.columns(len(unique_files)) if unique_files else []
+    for col, f in zip(cols, unique_files):
+        count = counts[f]
+        correct = correct_fn(f, deck)
+        icon = "check" if correct else "close"
+        label = "Correct" if correct else "Wrong"
+        col.image(f, width=120)
+        col.markdown(f":material/{icon}: {label} x{count}")
+
 st.subheader("Original Deck")
-cols = st.columns(len(chosen_files)) if chosen_files else []
-for col, f in zip(cols, chosen_files):
+deck_counts = Counter(chosen_files)
+unique_deck = list(deck_counts.keys())
+cols = st.columns(len(unique_deck)) if unique_deck else []
+for col, f in zip(cols, unique_deck):
+    count = deck_counts[f]
     col.image(f, width=120)
+    if count > 1:
+        col.markdown(f"x{count}")
 
 st.subheader("Marked as 'was in the deck'")
-cols = st.columns(len(marked_in_deck)) if marked_in_deck else []
-for col, f in zip(cols, marked_in_deck):
-    correct = f in chosen_files
-    col.image(f, width=120)
-    col.markdown(':green[:material/check:] Correct' if correct else ':red[:material/close:] Wrong')
+display_grouped(marked_in_deck, chosen_files, lambda f, deck: f in deck)
 
 st.subheader("Marked as 'was not in the deck'")
-cols = st.columns(len(marked_not_in_deck)) if marked_not_in_deck else []
-for col, f in zip(cols, marked_not_in_deck):
-    correct = f not in chosen_files
-    col.image(f, width=120)
-    col.markdown(':green[:material/check:] Correct' if correct else ':red[:material/close:] Wrong')
+display_grouped(marked_not_in_deck, chosen_files, lambda f, deck: f not in deck)
 
 if st.button("Play Again"):
     for key in list(st.session_state.keys()):
